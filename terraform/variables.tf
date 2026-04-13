@@ -1,7 +1,7 @@
 # file used to create variables that can be used throughout the codebaae.
 variable "resource_group_name" {
   description = "Name of the Azure Resource Group"
-  type        = string 
+  type        = string
 }
 
 variable "location" {
