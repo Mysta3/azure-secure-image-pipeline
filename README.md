@@ -57,9 +57,11 @@ Instead of relying on manual setup through the Azure Portal, this project uses I
 ---
 
 ## 📂 Project Structure
-/terraform # Infrastructure as Code (Azure resources)
-/scripts # Hardening and configuration scripts
-/.github/workflows # CI/CD pipeline definitions
+- **/terraform** # Infrastructure as Code (Azure resources)
+
+- **/scripts** # Hardening and configuration scripts
+
+- **/.github/workflows** # CI/CD pipeline definitions
 
 
 ---
