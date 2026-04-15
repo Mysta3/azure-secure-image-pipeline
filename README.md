@@ -70,7 +70,7 @@ Instead of relying on manual setup through the Azure Portal, this project uses I
 
 - [x] Project initialized  
 - [x] Terraform setup  
-- [ ] Azure resources fully defined  
+- [x] Azure resources fully defined  
 - [ ] CI/CD pipeline implemented  
 - [ ] Image Builder integration  
 - [ ] Security scanning (Lynis)  
