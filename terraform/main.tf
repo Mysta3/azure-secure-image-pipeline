@@ -39,3 +39,11 @@ resource "azurerm_shared_image" "ubuntu_hardened" {
 
   tags = var.tags
 }
+
+# User Assigned Managed Identity for Image Builder
+resource "azurerm_user_assigned_identity" "image_builder" {
+  name                = "id-image-builder"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
+  tags                = var.tags
+}
