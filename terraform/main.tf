@@ -7,12 +7,16 @@ provider "azurerm" {
 }
 
 # define resource block
-## resoruce "TYPE" "NAME"
+## resource "TYPE" "NAME"
 resource "azurerm_resource_group" "main" {
   name     = var.resource_group_name
   location = var.location
-  
-  tags = {
-    Project = "BIC_Mentee_Project"
-  }
+  tags = var.tags
+}
+
+resource "azurerm_shared_image_gallery" "main" {
+  name                = "secureImageGallery"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
+  description         = "Gallery for secure images"
 }
