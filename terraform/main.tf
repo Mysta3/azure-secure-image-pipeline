@@ -8,15 +8,16 @@ provider "azurerm" {
 
 # define resource block
 ## resource "TYPE" "NAME"
-resource "azurerm_resource_group" "main" {
+resource "azurerm_resource_group" "main" { # rm - resource manager, azurerm - azure resource manager, main - name of the resource block
   name     = var.resource_group_name
   location = var.location
-  tags = var.tags
+  tags     = var.tags
 }
 
 resource "azurerm_shared_image_gallery" "main" {
-  name                = "secureImageGallery"
+  name                = "sigsecureimagelab" # sig = shared image gallery
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   description         = "Gallery for secure images"
+  tags                = var.tags
 }
