@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "main" { # rm - resource manager, azurerm - az
   tags     = var.tags
 }
 
-# define shared image gallery resource
+# define shared image gallery resource {Destination for hardened images }
 resource "azurerm_shared_image_gallery" "main" {
   name                = "sigsecureimagelab" # sig = shared image gallery
   resource_group_name = azurerm_resource_group.main.name
@@ -23,7 +23,7 @@ resource "azurerm_shared_image_gallery" "main" {
   tags                = var.tags
 }
 
-# define image type to publish to the gallery
+# define image type to publish to the gallery [ Blueprint for the image ]
 resource "azurerm_shared_image" "ubuntu_hardened" {
   name                = "ubuntu-hardened"
   gallery_name        = azurerm_shared_image_gallery.main.name
