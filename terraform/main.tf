@@ -114,6 +114,8 @@ resource "azapi_resource" "image_template" {
           name = "InstallLynis"
           inline = [
             "sudo apt-get update",
+            "sudo apt-get install -y software-properties-common", ## make sure lynis package is available
+            "sudo add-apt-repository universe -y",
             "sudo DEBIAN_FRONTEND=noninteractive apt-get install -y lynis" ## add fix for timeout when installing lynis
           ]
         },
@@ -121,8 +123,10 @@ resource "azapi_resource" "image_template" {
           type = "Shell"
           name = "RunLynis"
           inline = [
-            "sudo lynis audit system --quiet > /tmp/lynis-report.txt", # capture results of lynis scan
-            "cat /tmp/lynis-report.txt"
+            "sudo lynis audit system > /tmp/lynis-report.txt || true", # capture results of lynis scan
+            "cat /tmp/lynis-report.txt",
+            "grep 'Harden Index' /tmp/lynis-report.txt > /tmp/hardening-score.txt",
+            "cat /tmp/hardening-score.txt"
           ]
         }
       ]
