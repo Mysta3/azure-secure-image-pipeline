@@ -120,13 +120,18 @@ resource "azapi_resource" "image_template" {
           ]
         },
         {
+
           type = "Shell"
           name = "RunLynis"
           inline = [
-            "sudo lynis audit system > /tmp/lynis-report.txt || true", # capture results of lynis scan
+            "sudo lynis audit system > /tmp/lynis-report.txt || true",
             "cat /tmp/lynis-report.txt",
-            "grep 'Harden Index' /tmp/lynis-report.txt > /tmp/hardening-score.txt || true",
-            "cat /tmp/hardening-score.txt || true"
+            "HARDENING_SCORE=$(awk '/Hardening index/ {print $4}' /tmp/lynis-report.txt)",
+            "MIN_SCORE=70",
+            "echo \"Detected Lynis hardening score: $${HARDENING_SCORE}\"",
+            "echo \"Minimum required hardening score: $${MIN_SCORE}\"",
+            "if [ -z \"$HARDENING_SCORE\" ]; then echo \"FAILED: Could not parse hardening score\"; exit 1; fi",
+            "if [ \"$HARDENING_SCORE\" -lt \"$MIN_SCORE\" ]; then echo \"FAILED: Hardening score below required threshold\"; exit 1; else echo \"PASSED: Hardening score meets threshold\"; fi"
           ]
         }
       ]
