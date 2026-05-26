@@ -17,16 +17,12 @@ Instead of relying on manual setup through the Azure Portal, this project uses I
 
 - **Infrastructure as Code (IaC)**  
   All Azure resources are defined using Terraform for repeatable and version-controlled deployments.
-
 - **CI/CD Pipeline (GitHub Actions)**  
   Every code push triggers an automated workflow to build and validate infrastructure.
-
 - **Automated Security Hardening**  
   VM images are scanned during build using tools like Lynis to enforce security standards.
-
 - **Cloud Identity & Least Privilege**  
   Managed Identities are used to ensure services only have the permissions they need.
-
 - **Observability by Design**  
   Azure Monitor Agent is injected into images so logging is enabled by default.
 
@@ -57,12 +53,10 @@ Instead of relying on manual setup through the Azure Portal, this project uses I
 ---
 
 ## 📂 Project Structure
+
 - **/terraform** # Infrastructure as Code (Azure resources)
-
 - **/scripts** # Hardening and configuration scripts
-
 - **/.github/workflows** # CI/CD pipeline definitions
-
 
 ---
 
@@ -72,8 +66,8 @@ Instead of relying on manual setup through the Azure Portal, this project uses I
 - [x] Terraform setup  
 - [x] Azure resources fully defined
 - [x] Image Builder integration  
-- [x] Security scanning (Lynis) 
-- [x] CI/CD pipeline implemented 
+- [x] Security scanning (Lynis)
+- [x] CI/CD pipeline implemented
 - [ ] Observability integration  
 
 ---
@@ -93,12 +87,14 @@ This project is built with a **security-first mindset**:
 ## 📈 Why This Project Matters
 
 Modern cloud environments require:
-- Consistency at scale  
+
+- Consistency at scale
 - Automated security enforcement  
 - Reduced human error  
 
 This project demonstrates the ability to:
-- Design secure cloud architecture  
+
+- Design secure cloud architecture
 - Implement DevSecOps pipelines  
 - Enforce security controls programmatically  
 
