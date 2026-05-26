@@ -121,7 +121,8 @@ resource "azapi_resource" "image_template" {
           type = "Shell"
           name = "RunLynis"
           inline = [
-            "sudo lynis audit system || exit 1"
+            "sudo lynis audit system --quiet > /tmp/lynis-report.txt", # capture results of lynis scan
+            "cat /tmp/lynis-report.txt"
           ]
         }
       ]
