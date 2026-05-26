@@ -114,7 +114,7 @@ resource "azapi_resource" "image_template" {
           name = "InstallLynis"
           inline = [
             "sudo apt-get update",
-            "sudo apt-get install -y lynis"
+            "sudo DEBIAN_FRONTEND=noninteractive apt-get install -y lynis" ## add fix for timeout when installing lynis
           ]
         },
         {
