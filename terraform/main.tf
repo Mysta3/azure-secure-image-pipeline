@@ -125,8 +125,8 @@ resource "azapi_resource" "image_template" {
           inline = [
             "sudo lynis audit system > /tmp/lynis-report.txt || true", # capture results of lynis scan
             "cat /tmp/lynis-report.txt",
-            "grep 'Harden Index' /tmp/lynis-report.txt > /tmp/hardening-score.txt",
-            "cat /tmp/hardening-score.txt"
+            "grep 'Harden Index' /tmp/lynis-report.txt > /tmp/hardening-score.txt || true",
+            "cat /tmp/hardening-score.txt || true"
           ]
         }
       ]
