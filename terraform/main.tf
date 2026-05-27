@@ -158,17 +158,17 @@ resource "azurerm_log_analytics_workspace" "main" {
   tags                = var.tags
 }
 
-resource "azurerm_monitor_diagnostic_setting" "activity_logs" {
-  name                       = "activity-logs-to-law"
-  target_resource_id         = azurerm_resource_group.main.id
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.main.id
+# resource "azurerm_monitor_diagnostic_setting" "activity_logs" {
+#   name                       = "activity-logs-to-law"
+#   target_resource_id         = azurerm_resource_group.main.id
+#   log_analytics_workspace_id = azurerm_log_analytics_workspace.main.id
 
-  enabled_log {
-    category = "Administrative"
-  }
+#   enabled_log {
+#     category = "Administrative"
+#   }
 
-  enabled_metric {
-    category = "AllMetrics"
-  }
+#   enabled_metric {
+#     category = "AllMetrics"
+#   }
 
-}
+# }
