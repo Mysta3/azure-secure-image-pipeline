@@ -44,4 +44,4 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -refresh=false
+        run: terraform plan
