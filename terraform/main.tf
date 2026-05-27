@@ -148,3 +148,12 @@ resource "azapi_resource" "image_template" {
     }
   }
 }
+
+resource "azurerm_log_analytics_workspace" "main" {
+  name                = "log-analytics-workspace-secure-image-lab"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+  tags                = var.tags
+}
