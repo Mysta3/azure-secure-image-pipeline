@@ -25,6 +25,12 @@ jobs:
       - name: Terraform Format Check
         run: terraform fmt -check
 
+      - name: Debug Terraform Files
+        run: |
+          pwd
+          ls -la
+          cat terraform.tfvars
+          
       - name: Terraform Init
         run: terraform init
 
