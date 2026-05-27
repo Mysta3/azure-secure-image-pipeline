@@ -68,7 +68,7 @@ Instead of relying on manual setup through the Azure Portal, this project uses I
 - [x] Image Builder integration  
 - [x] Security scanning (Lynis)
 - [x] CI/CD pipeline implemented
-- [ ] Observability integration  
+- [x] Observability integration  
 
 ---
 
@@ -106,6 +106,12 @@ This project demonstrates the ability to:
 - Applying security controls in CI/CD workflows  
 - Using Terraform to manage cloud infrastructure  
 - Designing secure, scalable Azure environments  
+
+---
+
+## Future Enhancement: Activity Log Diagnostic Settings
+
+Investigate and implement subscription-level diagnostic settings for routing Azure Activity Logs into the Log Analytics Workspace. The first attempt failed because Resource Groups do not support `azurerm_monitor_diagnostic_setting` as a diagnostic target.
 
 ---
 
