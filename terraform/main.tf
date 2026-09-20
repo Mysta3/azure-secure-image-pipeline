@@ -19,7 +19,7 @@ provider "azurerm" {
 
 # AZAPI resource for Image Template (since Image Builder is not yet fully supported in the azurerm provider, we use azapi to create the image template resource)
 provider "azapi" {
-  enable_preflight = true # optional, but recommended to catch errors before deployment
+  enable_preflight = false # optional, but recommended to catch errors before deployment
 }
 
 # define resource block
