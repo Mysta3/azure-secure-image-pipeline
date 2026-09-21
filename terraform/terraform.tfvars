@@ -1,5 +1,5 @@
 # input values file
-resource_group_name = "security-projects"
+resource_group_name = "rg-secure-image-pipeline"
 location            = "East US"
 
 tags = {
