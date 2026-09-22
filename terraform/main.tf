@@ -30,6 +30,12 @@ resource "azurerm_resource_group" "main" { # rm - resource manager, azurerm - az
   tags     = var.tags
 }
 
+resource "azurerm_resource_group" "staging" {
+  name     = var.staging_resource_group_name
+  location = var.location
+  tags     = var.tags
+}
+
 # define shared image gallery resource {Destination for hardened images }
 resource "azurerm_shared_image_gallery" "main" {
   name                = "sigsecureimagelab" # sig = shared image gallery
@@ -78,15 +84,25 @@ resource "azurerm_role_assignment" "image_builder_reader" {
   principal_id         = azurerm_user_assigned_identity.image_builder.principal_id
 }
 
+resource "azurerm_role_assignment" "image_builder_staging" {
+  scope                = azurerm_resource_group.staging.id
+  role_definition_name = "Contributor"
+  principal_id         = azurerm_user_assigned_identity.image_builder.principal_id
+}
+
 
 resource "azapi_resource" "image_template" {
-  type      = "Microsoft.VirtualMachineImages/imageTemplates@2021-10-01"
+  type      = "Microsoft.VirtualMachineImages/imageTemplates@2024-02-01"
   name      = "imgbuilder-secure-ubuntu"
   parent_id = azurerm_resource_group.main.id
   location  = azurerm_resource_group.main.location
   tags      = var.tags
 
-  depends_on = [azurerm_role_assignment.image_builder_sig]
+  depends_on = [
+    azurerm_role_assignment.image_builder_sig,
+    azurerm_role_assignment.image_builder_reader,
+    azurerm_role_assignment.image_builder_staging
+  ]
 
   identity {
     type         = "UserAssigned"
@@ -96,6 +112,7 @@ resource "azapi_resource" "image_template" {
   body = {
     properties = {
       buildTimeoutInMinutes = 60
+      stagingResourceGroup  = azurerm_resource_group.staging.id
       vmProfile = {
         vmSize = "Standard_D2ds_v4"
       }
